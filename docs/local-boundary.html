@@ -6,8 +6,8 @@
 <p>This runs the preserved upstream browser script. The transport is deliberately intercepted: no translation response or AI inference is simulated.</p>
 <section id="lesson">
   <p id="eligible">Hello world</p>
-  <p class="ignore" id="protected-class">KEEP_THIS_PRIVATE</p>
-  <code id="protected-code">DO_NOT_TRANSLATE_CODE</code>
+  <p class="ignore" id="protected-class">Keep this private</p>
+  <code id="protected-code">Do not translate code</code>
 </section>
 <pre id="result">Waiting for the local request boundary…</pre>
 <script src="../translate.js/translate.js"></script>
@@ -22,8 +22,8 @@ translate.request.post = function(path, data) {
   const payload = decodeURIComponent(encoded);
   const result = {
     eligibleTextQueued: payload.includes('Hello world'),
-    ignoredClassExcluded: !payload.includes('KEEP_THIS_PRIVATE'),
-    codeTagExcluded: !payload.includes('DO_NOT_TRANSLATE_CODE'),
+    ignoredClassExcluded: !payload.includes('Keep this private'),
+    codeTagExcluded: !payload.includes('Do not translate code'),
     originalDOMUnchanged: document.getElementById('eligible').textContent === 'Hello world',
     networkPolicy: "connect-src 'none'; transport intercepted before send",
     scope: 'extraction and protected-node request boundary only; translation NOT_RUN'
