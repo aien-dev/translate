@@ -1,0 +1,37 @@
+2026-10-22 parent replay: local browser boundary
+Executable demonstration source: 2f9d7f2493a3f38e6d2f0cee82d57be279a8441c.
+Environment: macOS26.6.2 arm64, Playwright1.60.0 via isolated uv, Chrome155.0.8059.85.
+Command: final complete local-browser sh block in TEACHING.md, copied verbatim and run from a new GitHub clone. Both positive and protection-removal commands exited0. No upstream translation response was supplied. This is a browser-extraction/ignore-boundary test, not translation or AIEN inference.
+
+The first prototype used all-capital underscore tokens for protected text. Removing the ignore class did not make those tokens enter the language queue, so its negative control did not bite. That weak fixture is retained in Git history, not accepted as evidence. Natural-language synthetic sentences replaced the tokens; removing the class then failed the positive check with ignoredClassExcluded=False. The portable --prove-ignore-control command reproduces that discriminating case without modifying source files.
+
+RAW FINAL FRESH-CHECKOUT OUTPUT:
+127.0.0.1 - - [22/Oct/2026 14:33:57] "GET /docs/local-boundary.html HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2026 14:33:57] "GET /translate.js/translate.js HTTP/1.1" 200 -
+{
+  "result": {
+    "eligibleTextQueued": true,
+    "ignoredClassExcluded": true,
+    "codeTagExcluded": true,
+    "originalDOMUnchanged": true,
+    "networkPolicy": "connect-src 'none'; transport intercepted before send",
+    "scope": "extraction and protected-node request boundary only; translation NOT_RUN"
+  },
+  "observed_external_request_attempts": 0,
+  "browser": "155.0.8059.85"
+}
+127.0.0.1 - - [22/Oct/2026 14:33:59] "GET /docs/local-boundary.html HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2026 14:34:09] "GET /translate.js/translate.js HTTP/1.1" 200 -
+{
+  "result": {
+    "eligibleTextQueued": true,
+    "ignoredClassExcluded": false,
+    "codeTagExcluded": true,
+    "originalDOMUnchanged": true,
+    "networkPolicy": "connect-src 'none'; transport intercepted before send",
+    "scope": "extraction and protected-node request boundary only; translation NOT_RUN"
+  },
+  "observed_external_request_attempts": 0,
+  "browser": "155.0.8059.85"
+}
+PROTECTION_REMOVAL_CAUGHT
