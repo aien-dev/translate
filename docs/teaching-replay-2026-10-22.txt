@@ -1,0 +1,21 @@
+TEACHING REPLAY 2026-10-22 UTC
+repository: aien-dev/translate
+base_sha: df9d77c85399470d10e2cb610f17e294ac107740
+source_sha: 7a39b2fadd13dc867cd5d5d674845031bbbde538
+environment: macOS-26.6.2-arm64-arm-64bit-Mach-O; python 3.14.6
+tool_versions:
+git --version: git version 2.55.0
+node --version: v22.18.0
+jq --version: jq-1.7.1-apple
+openssl version: OpenSSL 3.6.3 9 Jun 2026 (Library: OpenSSL 3.6.3 9 Jun 2026)
+cargo --version: cargo 1.97.1 (c980f4866 2026-06-30)
+qualification: syntax check PASS; browser translation/network behavior unverified
+checkout: fresh git clone --no-hardlinks --branch docs/teaching-20261022 from dedicated cohort clone
+command (from docs/TEACHING.md):
+node --check translate.js/translate.js
+
+stdout:
+
+stderr:
+
+exit: 0
