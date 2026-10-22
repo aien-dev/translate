@@ -1,3 +1,7 @@
+# AIEN fork note (2026-10-22)
+
+I retain this upstream translate.js fork as a browser translation reference. At `df9d77c`, fork HEAD equals xnx3/translate HEAD and contains no AIEN-specific change. I explain the request boundary and a pinned check in [the worked lesson](docs/TEACHING.md); [raw replay output](docs/teaching-replay-2026-10-22.txt) records the check. The original README and upstream credit follow unchanged.
+
 
 <h1 align="center">
     translate.js
