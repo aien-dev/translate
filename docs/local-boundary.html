@@ -1,0 +1,35 @@
+<!doctype html>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; connect-src 'none'; img-src 'self' data:">
+<title>translate.js: local extraction boundary, no translation service</title>
+<h1>Inspect a translation request without sending it</h1>
+<p>This runs the preserved upstream browser script. The transport is deliberately intercepted: no translation response or AI inference is simulated.</p>
+<section id="lesson">
+  <p id="eligible">Hello world</p>
+  <p class="ignore" id="protected-class">KEEP_THIS_PRIVATE</p>
+  <code id="protected-code">DO_NOT_TRANSLATE_CODE</code>
+</section>
+<pre id="result">Waiting for the local request boundary…</pre>
+<script src="../translate.js/translate.js"></script>
+<script>
+translate.selectLanguageTag.show = false;
+translate.language.setLocal('english');
+translate.to = 'french';
+window.interceptedRequests = [];
+translate.request.post = function(path, data) {
+  window.interceptedRequests.push({path: String(path), data: data});
+  const encoded = window.interceptedRequests.map(x => JSON.stringify(x.data)).join('\n');
+  const payload = decodeURIComponent(encoded);
+  const result = {
+    eligibleTextQueued: payload.includes('Hello world'),
+    ignoredClassExcluded: !payload.includes('KEEP_THIS_PRIVATE'),
+    codeTagExcluded: !payload.includes('DO_NOT_TRANSLATE_CODE'),
+    originalDOMUnchanged: document.getElementById('eligible').textContent === 'Hello world',
+    networkPolicy: "connect-src 'none'; transport intercepted before send",
+    scope: 'extraction and protected-node request boundary only; translation NOT_RUN'
+  };
+  window.lessonResult = result;
+  document.getElementById('result').textContent = JSON.stringify(result, null, 2);
+};
+translate.execute([document.getElementById('lesson')]);
+</script>
